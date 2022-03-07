@@ -34,7 +34,7 @@ void preOrder(YHZBinTree *root){
     preOrder(root->left);
     preOrder(root->right);
 }
-void  preOrderNon(YHZBinTree *root){
+void  preOrderNonRecurSion(YHZBinTree *root){
     if (root == nullptr){
         return;
     }
@@ -63,9 +63,72 @@ void  preOrderNon(YHZBinTree *root){
    // while (p)
 
 }
+void  midOrder(YHZBinTree *tree){
+    if (tree == nullptr){
+        return;
+    }
+    midOrder(tree->left);
+    printf("%d,",tree->node);
+    midOrder(tree->right);
+}
+void midOrderNonRecurSion(YHZBinTree *tree){
+    YHZBinTree * pTree  = tree;
+    if (pTree == nullptr) return;
+    stack<YHZBinTree *>treeStack;
+    while (pTree!= nullptr||treeStack.size()){
+        if (pTree){
+            treeStack.push(pTree);
+            pTree = pTree->left;
+        }
+        else{
+            printf("%d,",treeStack.top()->node);
+            pTree = treeStack.top()->right;
+            treeStack.pop();
+        }
+    }
+    //while ()
+}
+void postOrder(YHZBinTree *tree){
+    if (tree == nullptr) return;
+    postOrder(tree->left);
+    postOrder(tree->right);
+    printf("%d,",tree->node);
+}
+void postOrderNonRecursion(YHZBinTree* tree){
+    YHZBinTree* pTree = tree;
+    if (pTree == nullptr){
+        return;
+    }
+    stack <YHZBinTree*> treeStack;
+    YHZBinTree*preTree = nullptr;
+    while (pTree!= nullptr||!treeStack.empty()){
+        while (pTree!= nullptr){
+            treeStack.push(pTree);
+            pTree = pTree -> left;
+
+        }
+
+        if (!treeStack.empty()){
+            pTree = treeStack.top();
+
+            if (pTree->right == nullptr || preTree == pTree->right){
+                printf("%d,",pTree->node);
+                preTree = pTree;
+                treeStack.pop();
+                pTree = nullptr;
+            } else{
+               // treeStack.push(pTree);
+                pTree = pTree->right;
+
+            }
+        }
+    }
+
+
+}
 int main() {
     vector<int> treeData = {1,2,3,4,5,6,7};
     YHZBinTree* tree =  buildComplteTree(treeData);
-    preOrderNon(tree);
+    postOrder(tree);
     return 0;
 }
