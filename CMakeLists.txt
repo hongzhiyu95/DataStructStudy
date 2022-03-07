@@ -3,4 +3,4 @@ project(DataStructStudy)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(DataStructStudy main.cpp)
+add_executable(DataStructStudy main.cpp YHZBinTree.cpp YHZBinTree.h)
