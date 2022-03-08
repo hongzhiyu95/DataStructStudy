@@ -65,6 +65,7 @@ void  preOrderNonRecurSion(YHZBinTree *root){
 }
 void  midOrder(YHZBinTree *tree){
     if (tree == nullptr){
+
         return;
     }
     midOrder(tree->left);
